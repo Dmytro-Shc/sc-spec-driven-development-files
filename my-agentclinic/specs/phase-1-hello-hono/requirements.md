@@ -2,19 +2,21 @@
 
 ## Goal
 
-Get a working Hono server on the desk, serving a single route, with TypeScript type-checking confirmed end-to-end. This is the foundation every subsequent phase builds on.
+Get a working Hono server on the desk, serving a minimal AgentClinic home page, with TypeScript type-checking confirmed end-to-end. This is the foundation every subsequent phase builds on.
 
 ## Scope
 
 1. **Install and configure Hono** with `tsx` as the dev server
-2. **Single `/` route** returning the text `"AgentClinic is open for business"` (aligns with the mission's whimsical tone)
+2. **Minimal AgentClinic home page** at `/` — an HTML page, not raw text, welcoming visitors to the clinic
 3. **TypeScript type check** passes via `tsc --noEmit`
 
 ## Out of Scope
 
-- Any route other than `/` (no layout, no agents, no ailments)
+- Any route other than `/` (no agents, no ailments, no dashboard)
+- Shared layout components, header/nav/footer (Phase 2)
+- External CSS files, CSS custom properties, or a stylesheet (Phase 2)
+- JSX rendering or template engine setup (Phase 2)
 - Database setup or migrations
-- CSS or styling
 - Error handling or 404 pages
 - Testing framework setup (Vitest comes later)
 - Production build or deployment configuration
@@ -33,8 +35,8 @@ Get a working Hono server on the desk, serving a single route, with TypeScript t
 |---|---|---|
 | Dev server | `tsx` watch (via `tsx watch src/index.ts`) | Hot-reload during development; no build step needed |
 | Server port | `3000` (Hono default) | Common convention; easy to change later |
-| Response format | Plain text (not HTML) | Simplest possible return for Phase 1; JSX layout comes in Phase 2 |
-| Route handler | `c.text()` | Hono's built-in text response helper; no template overhead |
+| Response format | Inline HTML (via `c.html()`) | A real page, not raw text — visitors see a proper AgentClinic welcome. Still no external CSS/JS; that's Phase 2 |
+| Route handler | `c.html()` | Hono's built-in HTML response helper; the page is small enough to inline until Phase 2 brings JSX layouts |
 
 ## References
 
