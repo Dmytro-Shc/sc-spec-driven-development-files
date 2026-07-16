@@ -1,28 +1,13 @@
-# Lesson 04 — Prompts
+# Lesson 07 — Prompts
 
 ## Prompt 1
 
-We are writing AgentClinic, a place for AI agents to get relief from their humans. Look in the README.md for input from stakeholders.
+Update specs/2026-03-30-hello-hono/plan.md and implementation of a main layout component with a header/main/footer as three subcomponents. Make a CSS file, import it, and link to it.
 
 ## Prompt 2
 
-Let's create a "constitution" in a specs directory:
-- `mission.md`
-- `tech-stack.md`
-- `roadmap.md` for high-level implementation order, in very small phases of work.
-
-Important: You *must* use your AskUserQuestion tool, grouped on these 3, before writing to disk.
+Update the spec to capture that the header, footer, and main components should be in their own files.
 
 ## Prompt 3
 
-Use server-side TypeScript and recommend a framework.
-
-## Prompt 4
-
-Add a target audience to the mission:
-- Course students learning spec-driven development with AI coding agents
-- Developers giving AI coding demos at conference booths
-
-## Prompt 5
-
-In tech stack add that we use SQLite.
+Mark this specs/roadmap.md phase as complete, commit this work, switch to main, and merge this branch, then delete it.
