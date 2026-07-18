@@ -1,6 +1,6 @@
 # Roadmap
 
-Phases are intentionally small — each one is a shippable slice of work, independently reviewable and testable.
+Phases are intentionally focused — each one is a shippable slice of work, independently reviewable and testable.
 
 ---
 
@@ -11,8 +11,7 @@ Phases are intentionally small — each one is a shippable slice of work, indepe
 
 ## Phase 2 — Agents & Ailments
 - Server-side JSX layout component (header, nav, main, footer)
-- Responsive CSS (custom properties, reset, typography, mobile-first media queries)
-- Layout adapts to viewport width: mobile (< 640px), tablet (640–1024px), desktop (> 1024px)
+- Basic CSS (custom properties, reset, typography)
 - All routes render inside the shared layout
 - SQLite database + first migration (`agents` table)
 - Seed a handful of fictional agents
@@ -38,9 +37,9 @@ Phases are intentionally small — each one is a shippable slice of work, indepe
 - Mary's dashboard is now real
 
 ## Phase 6 — Polish & Accessibility
+- Responsive layout audit across all pages (mobile-first foundation established in Phase 1; Phase 6 ensures every new page and component follows the pattern)
 - Semantic HTML audit
 - Keyboard navigation and focus styles
-- Color contrast and screen-reader audit
 
 ## Phase 7 — Hardening
 - Error pages (404, 500)

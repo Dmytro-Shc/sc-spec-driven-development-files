@@ -39,18 +39,20 @@ HTTP status must be `200 OK`. Response body must be HTML and must contain:
 
 `tsconfig.json` must contain `"strict": true`.
 
-### 6. Responsive layout is present
+### 6. Responsive design is in place
 
-The HTML response must include:
-- A `<meta name="viewport">` tag with `width=device-width, initial-scale=1.0`
-- The CSS must use at least one media query for responsive breakpoints
+The rendered HTML must contain `<meta name="viewport" content="width=device-width, initial-scale=1.0">`. `static/style.css` must use CSS custom properties and at least one `min-width` media query.
 
-### 7. No horizontal overflow at narrow widths
+### 7. Test script is wired up
 
-The layout must not require horizontal scrolling at viewport widths of 320px and above. Content must reflow to fit the available width.
+```
+npm test
+```
+
+Must exit with code 0. No test files are required for this phase, but the script must exist and Vitest must be installed.
 
 ## Not Required
 
-- No automated tests needed for this phase
+- No additional test cases required for this phase beyond what is listed above
 - No CI pipeline required
-- Browser rendering not checked (curl is sufficient for items 1–6; item 7 checked via browser devtools or responsive design mode)
+- Browser rendering not checked (curl is sufficient)
