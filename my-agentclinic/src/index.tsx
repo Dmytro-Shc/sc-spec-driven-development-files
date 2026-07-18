@@ -11,6 +11,10 @@ app.get("/", (c) => {
   return c.html(<Home />);
 });
 
-serve({ fetch: app.fetch, port: 3000 }, (info) => {
-  console.log(`Server running at http://localhost:${info.port}`);
-});
+export default app;
+
+if (import.meta.vitest === undefined) {
+  serve({ fetch: app.fetch, port: 3000 }, (info) => {
+    console.log(`Server running at http://localhost:${info.port}`);
+  });
+}
