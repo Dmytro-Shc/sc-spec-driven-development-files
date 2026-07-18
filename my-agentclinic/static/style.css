@@ -1,4 +1,8 @@
-*, *::before, *::after {
+/* ===== Reset & Base ===== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -10,26 +14,91 @@ body {
   background: #fff;
 }
 
+/* ===== Header ===== */
+
 header {
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
-header a {
+header .logo {
   font-weight: 600;
   text-decoration: none;
   color: inherit;
+  font-size: 1.125rem;
 }
 
+header nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+header nav a {
+  text-decoration: none;
+  color: #555;
+  font-size: 0.9375rem;
+}
+
+header nav a:hover,
+header nav a:focus {
+  color: #1a1a1a;
+  text-decoration: underline;
+}
+
+/* ===== Main ===== */
+
 main {
-  padding: 2rem;
+  padding: 1.5rem 1rem;
   max-width: 60rem;
   margin-inline: auto;
 }
 
+/* ===== Footer ===== */
+
 footer {
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-top: 1px solid #e5e5e5;
   font-size: 0.875rem;
   color: #666;
+  text-align: center;
+}
+
+/* ===== Mobile (default) — single column, stacked ===== */
+
+/* ===== Tablet: 640px+ ===== */
+
+@media (min-width: 640px) {
+  header {
+    padding: 1rem 1.5rem;
+  }
+
+  main {
+    padding: 2rem 1.5rem;
+  }
+
+  footer {
+    padding: 1rem 1.5rem;
+  }
+}
+
+/* ===== Desktop: 1024px+ ===== */
+
+@media (min-width: 1024px) {
+  header {
+    padding: 1rem 2rem;
+  }
+
+  main {
+    padding: 2.5rem 2rem;
+  }
+
+  footer {
+    padding: 1rem 2rem;
+  }
 }

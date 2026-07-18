@@ -11,7 +11,8 @@ Phases are intentionally small — each one is a shippable slice of work, indepe
 
 ## Phase 2 — Base Layout
 - Server-side JSX layout component (header, nav, main, footer)
-- Basic CSS (custom properties, reset, typography)
+- Responsive CSS (custom properties, reset, typography, mobile-first media queries)
+- Layout adapts to viewport width: mobile (< 640px), tablet (640–1024px), desktop (> 1024px)
 - All routes render inside the shared layout
 
 ## Phase 3 — Agent List
@@ -44,9 +45,9 @@ Phases are intentionally small — each one is a shippable slice of work, indepe
 - Mary's dashboard is now real
 
 ## Phase 9 — Polish & Accessibility
-- Responsive layout for Steve's modern-browser requirement
 - Semantic HTML audit
 - Keyboard navigation and focus styles
+- Color contrast and screen-reader audit
 
 ## Phase 10 — Hardening
 - Error pages (404, 500)

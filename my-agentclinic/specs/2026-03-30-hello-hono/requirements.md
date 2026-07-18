@@ -27,7 +27,17 @@ The home page should render an `<h1>` containing "AgentClinic" and a short tagli
 
 This is the first visible page a developer sees when they clone and run the project.
 
+## Responsive Design
+
+The layout must be responsive from the start. The CSS uses a mobile-first approach with breakpoints:
+
+- **Mobile** (< 640px): single-column, stacked layout, full-width content
+- **Tablet** (640–1024px): comfortable reading width, slightly relaxed spacing
+- **Desktop** (> 1024px): centered content with a max-width constraint, generous whitespace
+
+The `<meta name="viewport">` tag must be present in the layout. The layout must be usable and readable at any viewport width with no horizontal scrolling.
+
 ## Stakeholder Notes
 
 - **Mary** needs TypeScript end-to-end (satisfied by `strict: true` + successful `tsc --noEmit`)
-- **Steve** has no requirements yet; this phase is plumbing only
+- **Steve** needs the site to work on modern browsers at any screen size (satisfied by responsive CSS)

@@ -20,7 +20,7 @@ describe("AgentClinic Application", () => {
     const html = await response.text();
 
     expect(html).toContain("<header>");
-    expect(html).toContain('<a href="/">AgentClinic</a>');
+    expect(html).toContain("class=\"logo\"");
     expect(html).toContain("<footer>");
     // Note: The footer contains the actual copyright symbol, not &copy;
     expect(html).toContain("©");
@@ -32,5 +32,14 @@ describe("AgentClinic Application", () => {
     const response = await app.fetch(new Request("http://localhost/static/style.css"));
     // We expect either 200 (if file exists) or 404 (if not) but not 500
     expect(response.status).not.toBe(500);
+  });
+
+  it("should include responsive viewport meta tag", async () => {
+    const response = await app.fetch(new Request("http://localhost/"));
+    const html = await response.text();
+
+    expect(html).toContain(
+      '<meta name="viewport" content="width=device-width, initial-scale=1.0"'
+    );
   });
 });

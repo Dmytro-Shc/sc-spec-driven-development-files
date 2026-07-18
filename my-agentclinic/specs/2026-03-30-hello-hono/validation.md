@@ -39,8 +39,18 @@ HTTP status must be `200 OK`. Response body must be HTML and must contain:
 
 `tsconfig.json` must contain `"strict": true`.
 
+### 6. Responsive layout is present
+
+The HTML response must include:
+- A `<meta name="viewport">` tag with `width=device-width, initial-scale=1.0`
+- The CSS must use at least one media query for responsive breakpoints
+
+### 7. No horizontal overflow at narrow widths
+
+The layout must not require horizontal scrolling at viewport widths of 320px and above. Content must reflow to fit the available width.
+
 ## Not Required
 
 - No automated tests needed for this phase
 - No CI pipeline required
-- Browser rendering not checked (curl is sufficient)
+- Browser rendering not checked (curl is sufficient for items 1–6; item 7 checked via browser devtools or responsive design mode)
