@@ -1,12 +1,6 @@
 import { Layout } from "../components/Layout";
 import { getDb } from "../db";
-
-interface AilmentRow {
-  id: number;
-  name: string;
-  description: string;
-  agent_count: number;
-}
+import type { AilmentRow } from "../types";
 
 export function AilmentsList() {
   const db = getDb();

@@ -1,23 +1,6 @@
 import { Layout } from "../components/Layout";
 import { getDb } from "../db";
-
-interface AgentRow {
-  id: number;
-  name: string;
-  model_type: string;
-  status: string;
-  created_at?: string;
-}
-
-interface AilmentRef {
-  id: number;
-  name: string;
-  description: string;
-}
-
-interface AgentDetailProps {
-  id: number;
-}
+import type { AgentRow, AilmentRef, AgentDetailProps } from "../types";
 
 export function AgentsList() {
   const db = getDb();
@@ -32,7 +15,7 @@ export function AgentsList() {
       {agents.length === 0 && <p>No agents registered yet.</p>}
       {agents.map((agent) => (
         <div class="agent-card">
-          <h3><a href={`/agents/${agent.id}`}>{agent.name}</a></h3>
+          <h2><a href={`/agents/${agent.id}`}>{agent.name}</a></h2>
           <div class="meta">
             {agent.model_type} &middot; <em>{agent.status}</em>
           </div>

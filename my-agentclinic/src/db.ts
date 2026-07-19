@@ -22,3 +22,14 @@ export function closeDb(): void {
     db = null;
   }
 }
+
+// Close the database connection on process exit
+process.on("exit", closeDb);
+process.on("SIGINT", () => {
+  closeDb();
+  process.exit(0);
+});
+process.on("SIGTERM", () => {
+  closeDb();
+  process.exit(0);
+});

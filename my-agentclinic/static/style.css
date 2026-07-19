@@ -30,7 +30,7 @@ header nav a {
 header nav a:hover,
 header nav a:focus {
   color: #fff;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Footer */
@@ -61,8 +61,9 @@ h1, h2, h3 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.agent-card h3 {
+.agent-card h2 {
   margin-bottom: 0.25rem;
+  font-size: 1.25rem;
 }
 
 .agent-card .meta {
@@ -90,6 +91,22 @@ h1, h2, h3 {
 .not-found h1 {
   font-size: 3rem;
   margin-bottom: 0.5rem;
+}
+
+/* Skip-to-content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0.5rem;
+  background: #fff;
+  color: var(--pico-primary);
+  padding: 0.5rem 1rem;
+  z-index: 1000;
+  border-radius: 0 0 var(--pico-border-radius) var(--pico-border-radius);
+}
+
+.skip-link:focus {
+  top: 0;
 }
 
 /* Utility */

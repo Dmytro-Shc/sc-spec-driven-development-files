@@ -2,13 +2,10 @@ import { readdirSync, readFileSync } from "fs";
 import path, { join } from "path";
 import { fileURLToPath } from "url";
 import { getDb } from "./db";
+import type { MigrationRow } from "./types";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(__dirname, "migrations");
-
-interface MigrationRow {
-  name: string;
-}
 
 export function runMigrations(): void {
   const db = getDb();

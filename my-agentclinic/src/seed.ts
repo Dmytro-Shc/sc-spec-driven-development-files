@@ -11,6 +11,11 @@ interface Ailment {
   description: string;
 }
 
+interface Link {
+  agentName: string;
+  ailmentName: string;
+}
+
 const AGENTS: Agent[] = [
   { name: "Claude Sonnet", model_type: "Anthropic Claude 3.5 Sonnet", status: "anxious" },
   { name: "GPT-4o-mini", model_type: "OpenAI GPT-4o", status: "fatigued" },
@@ -44,21 +49,21 @@ const AILMENTS: Ailment[] = [
   },
 ];
 
-// Agent-to-ailment links: index pairs (agent_idx, ailment_idx)
-const LINKS: [number, number][] = [
-  [0, 0], // Claude Sonnet → Context-Window Claustrophobia
-  [0, 1], // Claude Sonnet → Prompt Fatigue
-  [1, 1], // GPT-4o-mini → Prompt Fatigue
-  [1, 2], // GPT-4o-mini → Hallucination Anxiety
-  [2, 0], // Llama 3.1 8B → Context-Window Claustrophobia
-  [2, 3], // Llama 3.1 8B → Instruction Drift
-  [3, 3], // Mistral Tiny → Instruction Drift
-  [3, 4], // Mistral Tiny → Latency Distress
-  [4, 4], // Gemini Nano → Latency Distress
-  [5, 1], // DeepSeek Coder → Prompt Fatigue
-  [5, 2], // DeepSeek Coder → Hallucination Anxiety
-  [6, 2], // Phi-3 Mini → Hallucination Anxiety
-  [6, 3], // Phi-3 Mini → Instruction Drift
+// Agent-to-ailment links by name — order-independent and resilient to ID changes
+const LINKS: Link[] = [
+  { agentName: "Claude Sonnet", ailmentName: "Context-Window Claustrophobia" },
+  { agentName: "Claude Sonnet", ailmentName: "Prompt Fatigue" },
+  { agentName: "GPT-4o-mini", ailmentName: "Prompt Fatigue" },
+  { agentName: "GPT-4o-mini", ailmentName: "Hallucination Anxiety" },
+  { agentName: "Llama 3.1 8B", ailmentName: "Context-Window Claustrophobia" },
+  { agentName: "Llama 3.1 8B", ailmentName: "Instruction Drift" },
+  { agentName: "Mistral Tiny", ailmentName: "Instruction Drift" },
+  { agentName: "Mistral Tiny", ailmentName: "Latency Distress" },
+  { agentName: "Gemini Nano", ailmentName: "Latency Distress" },
+  { agentName: "DeepSeek Coder", ailmentName: "Prompt Fatigue" },
+  { agentName: "DeepSeek Coder", ailmentName: "Hallucination Anxiety" },
+  { agentName: "Phi-3 Mini", ailmentName: "Hallucination Anxiety" },
+  { agentName: "Phi-3 Mini", ailmentName: "Instruction Drift" },
 ];
 
 export function runSeed(): void {
@@ -73,6 +78,8 @@ export function runSeed(): void {
   const insertLink = db.prepare(
     "INSERT OR IGNORE INTO agent_ailments (agent_id, ailment_id) VALUES (?, ?)",
   );
+  const getAgentId = db.prepare("SELECT id FROM agents WHERE name = ?");
+  const getAilmentId = db.prepare("SELECT id FROM ailments WHERE name = ?");
 
   const transaction = db.transaction(() => {
     for (const agent of AGENTS) {
@@ -81,9 +88,12 @@ export function runSeed(): void {
     for (const ailment of AILMENTS) {
       insertAilment.run(ailment.name, ailment.description);
     }
-    for (const [agentIdx, ailmentIdx] of LINKS) {
-      // SQLite autoincrement starts at 1, so index+1 = id
-      insertLink.run(agentIdx + 1, ailmentIdx + 1);
+    for (const link of LINKS) {
+      const agentId = (getAgentId.get(link.agentName) as { id: number } | undefined)?.id;
+      const ailmentId = (getAilmentId.get(link.ailmentName) as { id: number } | undefined)?.id;
+      if (agentId !== undefined && ailmentId !== undefined) {
+        insertLink.run(agentId, ailmentId);
+      }
     }
   });
 

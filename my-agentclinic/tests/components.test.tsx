@@ -76,4 +76,21 @@ describe("Layout", () => {
     expect(html).toContain('name="viewport"');
     expect(html).toContain("width=device-width");
   });
+
+  it("outputs DOCTYPE html declaration", () => {
+    const html = Layout({ children: "" }).toString();
+    expect(html).toContain("<!DOCTYPE html>");
+  });
+
+  it("includes a skip-to-content link", () => {
+    const html = Layout({ children: "" }).toString();
+    expect(html).toContain('class="skip-link"');
+    expect(html).toContain('href="#main"');
+    expect(html).toContain("Skip to main content");
+  });
+
+  it("adds id=\"main\" to the main element", () => {
+    const html = Layout({ children: "" }).toString();
+    expect(html).toContain('<main id="main"');
+  });
 });
