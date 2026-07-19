@@ -6,6 +6,10 @@ import { getDb } from "./db";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const MIGRATIONS_DIR = join(__dirname, "migrations");
 
+interface MigrationRow {
+  name: string;
+}
+
 export function runMigrations(): void {
   const db = getDb();
 
@@ -20,7 +24,7 @@ export function runMigrations(): void {
     db
       .prepare("SELECT name FROM _migrations ORDER BY name")
       .all()
-      .map((r: unknown) => (r as { name: string }).name),
+      .map((r: unknown) => (r as MigrationRow).name),
   );
 
   const files = readdirSync(MIGRATIONS_DIR)

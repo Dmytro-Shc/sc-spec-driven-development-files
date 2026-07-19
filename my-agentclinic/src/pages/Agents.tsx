@@ -1,7 +1,7 @@
 import { Layout } from "../components/Layout";
 import { getDb } from "../db";
 
-interface Agent {
+interface AgentRow {
   id: number;
   name: string;
   model_type: string;
@@ -9,11 +9,21 @@ interface Agent {
   created_at?: string;
 }
 
+interface AilmentRef {
+  id: number;
+  name: string;
+  description: string;
+}
+
+interface AgentDetailProps {
+  id: number;
+}
+
 export function AgentsList() {
   const db = getDb();
   const agents = db.prepare(
     "SELECT id, name, model_type, status FROM agents ORDER BY name",
-  ).all() as Agent[];
+  ).all() as AgentRow[];
 
   return (
     <Layout>
@@ -32,11 +42,11 @@ export function AgentsList() {
   );
 }
 
-export function AgentDetail({ id }: { id: number }) {
+export function AgentDetail({ id }: AgentDetailProps) {
   const db = getDb();
   const agent = db.prepare(
     "SELECT id, name, model_type, status, created_at FROM agents WHERE id = ?",
-  ).get(id) as Agent | undefined;
+  ).get(id) as AgentRow | undefined;
 
   if (!agent) {
     return (
@@ -56,7 +66,7 @@ export function AgentDetail({ id }: { id: number }) {
     JOIN agent_ailments aa ON aa.ailment_id = a.id
     WHERE aa.agent_id = ?
     ORDER BY a.name
-  `).all(id) as { id: number; name: string; description: string }[];
+  `).all(id) as AilmentRef[];
 
   return (
     <Layout>
