@@ -1,7 +1,5 @@
 /tmp
 /out-tsc
-/data
-*.bak
 
 /node_modules
 npm-debug.log*

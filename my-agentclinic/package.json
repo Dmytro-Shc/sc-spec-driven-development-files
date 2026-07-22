@@ -7,12 +7,12 @@
     "build": "tsc",
     "dev": "tsx watch src/index.tsx",
     "typecheck": "tsc --noEmit",
+    "seed": "tsx src/db/run-seed.ts",
     "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@hono/node-server": "1.19.12",
-    "@picocss/pico": "^2.1.1",
-    "better-sqlite3": "^12.11.1",
+    "better-sqlite3": "^12.8.0",
     "hono": "4.12.9"
   },
   "devDependencies": {

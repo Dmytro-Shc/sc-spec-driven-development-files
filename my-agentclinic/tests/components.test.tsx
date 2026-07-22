@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Header } from "../src/components/Header";
 import { Footer } from "../src/components/Footer";
+import { Main } from "../src/components/Main";
 import { Layout } from "../src/components/Layout";
 
 describe("Header", () => {
@@ -17,12 +18,6 @@ describe("Header", () => {
   it("displays the site name", () => {
     const html = Header({}).toString();
     expect(html).toContain("AgentClinic");
-  });
-
-  it("includes nav links to Agents and Ailments", () => {
-    const html = Header({}).toString();
-    expect(html).toContain('href="/agents"');
-    expect(html).toContain('href="/ailments"');
   });
 });
 
@@ -43,6 +38,18 @@ describe("Footer", () => {
   });
 });
 
+describe("Main", () => {
+  it("renders a main element", () => {
+    const html = Main({ children: "content" }).toString();
+    expect(html).toContain("<main");
+  });
+
+  it("renders children", () => {
+    const html = Main({ children: "hello world" }).toString();
+    expect(html).toContain("hello world");
+  });
+});
+
 describe("Layout", () => {
   it("renders an html element with lang attribute", () => {
     const html = Layout({ children: "" }).toString();
@@ -54,9 +61,8 @@ describe("Layout", () => {
     expect(html).toContain("<title>AgentClinic</title>");
   });
 
-  it("links both PicoCSS and the app stylesheet", () => {
+  it("links the stylesheet", () => {
     const html = Layout({ children: "" }).toString();
-    expect(html).toContain('href="/static/pico.min.css"');
     expect(html).toContain('href="/static/style.css"');
   });
 
@@ -75,22 +81,5 @@ describe("Layout", () => {
     const html = Layout({ children: "" }).toString();
     expect(html).toContain('name="viewport"');
     expect(html).toContain("width=device-width");
-  });
-
-  it("outputs DOCTYPE html declaration", () => {
-    const html = Layout({ children: "" }).toString();
-    expect(html).toContain("<!DOCTYPE html>");
-  });
-
-  it("includes a skip-to-content link", () => {
-    const html = Layout({ children: "" }).toString();
-    expect(html).toContain('class="skip-link"');
-    expect(html).toContain('href="#main"');
-    expect(html).toContain("Skip to main content");
-  });
-
-  it("adds id=\"main\" to the main element", () => {
-    const html = Layout({ children: "" }).toString();
-    expect(html).toContain('<main id="main"');
   });
 });

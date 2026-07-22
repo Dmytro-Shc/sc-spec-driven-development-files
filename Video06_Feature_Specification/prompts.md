@@ -12,7 +12,7 @@ Create:
 
 Refer to specs/mission.md and specs/tech-stack.md for guidance.
 
-Important: You *must* use your AskUserQuestion tool, grouped on these 3, before writing to disk and working with git.
+Important: You *must* use your AskUserQuestion((or request_user_input)) tool, grouped on these 3, before writing to disk and working with git.
 
 ## Prompt 2
 
